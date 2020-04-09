@@ -33,9 +33,7 @@ Protocol: [VideoCaptureViewProtocol.swift](https://github.com/Hideyuki-Machida/C
 Example: [MetalVideoCaptureViewExampleVC.swift](https://github.com/Hideyuki-Machida/CameraCore/blob/master/Example/CameraCoreExample/MetalVideoCaptureViewExampleVC.swift)
 
 
-
-
-## CompositionDataをセットしVideoを再生
+## CompositionDataをセットし、Videoを再生
 ### MetalVideoPlaybackView（MTKView）
 
 Class: [MetalVideoPlaybackView.swift](https://github.com/Hideyuki-Machida/CameraCore/blob/master/CameraCore/Renderer/CompositionAVPlayer/MetalVideoPlaybackView.swift)
@@ -44,13 +42,36 @@ Protocol: [CompositionAVPlayerProtocol.swift](https://github.com/Hideyuki-Machid
 
 Example: [MetalVideoPlaybackViewExampleVC.swift](https://github.com/Hideyuki-Machida/CameraCore/blob/master/Example/CameraCoreExample/MetalVideoPlaybackViewExampleVC.swift)
 
-<br />
 
-### CompositionDataについて
+## CompositionDataをセットし、Video・Audioを再生
+### CompositionAVPlayer
 
-MetalVideoPlaybackViewでは、セットされた CompositionData を基に動画を描画します。<br />
-CompositionDataは、複数のTrack、さらに複数のAssetで構成されます。<br />
-CompositionDataは、Track内でのAssetの再生開始位置・transformなどの編集情報をパラメータとして保持します。
+Class: [MetalCompositionAVPlayer.swift](https://github.com/Hideyuki-Machida/CameraCore/blob/master/CameraCore/Renderer/CompositionAVPlayer/MetalCompositionAVPlayer.swift)
+
+Protocol: [CompositionAVPlayerProtocol.swift](https://github.com/Hideyuki-Machida/CameraCore/blob/master/CameraCore/Renderer/CompositionAVPlayer/CompositionAVPlayerProtocol.swift)
+
+Example: [CompositionAVPlayerExampleVC.swift](https://github.com/Hideyuki-Machida/CameraCore/blob/master/Example/CameraCoreExample/CompositionAVPlayerExampleVC.swift)
+
+
+## ImageProcessing
+### RenderLayer
+
+ビデオのフレーム毎に画像処理をしたい場合に用いるレイヤー（PhotoShopの調整レイヤーのイメージ）
+
+Protocol: [RenderLayerProtocol.swift](https://github.com/Hideyuki-Machida/CameraCore/blob/master/CameraCore/ImageProcessing/RenderLayerProtocol.swift)
+
+Example: [RenderLayerExampleVC.swift](https://github.com/Hideyuki-Machida/CameraCore/blob/master/Example/CameraCoreExample/RenderLayerExampleVC.swift)
+
+
+## コンポジションしたビデオをエンコード & 保存
+### VideoEncoder
+
+Protocol: [VideoBitRateEncoder.swift](https://github.com/Hideyuki-Machida/CameraCore/blob/master/CameraCore/Encoder/VideoBitRateEncoder.swift)
+
+Example: [VideoBitRateEncoderExampleVC.swift](https://github.com/Hideyuki-Machida/CameraCore/blob/master/Example/CameraCoreExample/VideoBitRateEncoderExampleVC.swift)
+
+
+## CompositionData
 
 CameraCoreの基本データModel
 
@@ -65,6 +86,9 @@ CompositionAssetProtocol (CompositionVideoAsset, CompositionAudioAsset)
 |CompositionData|CompositionVideoTrack {n個}|CompositionVideoAsset {n個}|
 ||CompositionAudioTrack {n個}|CompositionAudioAsset {n個}|
 
+編集結果のパラメータを持つ CompositionData は<br>
+複数のTrack、さらに複数のAssetで構成されます。<br>
+
 * 下記の図のように、動画編集ソフトのタイムラインのように扱います。<br>
 * 一つのTrackには、複数のAssetの配置が可能です。<br>
 * TrackにAssetを配置するには、下記を指定します。<br>
@@ -72,34 +96,4 @@ CompositionAssetProtocol (CompositionVideoAsset, CompositionAudioAsset)
 	* TrimTimeRange: Assetの再生レンジ
 
 ![画像](./timeline.png)
-
-
-## CompositionDataをセットしAudioを再生
-### CompositionAVPlayer
-
-Class: [MetalCompositionAVPlayer.swift](https://github.com/Hideyuki-Machida/CameraCore/blob/master/CameraCore/Renderer/CompositionAVPlayer/MetalCompositionAVPlayer.swift)
-
-Protocol: [CompositionAVPlayerProtocol.swift](https://github.com/Hideyuki-Machida/CameraCore/blob/master/CameraCore/Renderer/CompositionAVPlayer/CompositionAVPlayerProtocol.swift)
-
 Example: [CompositionAVPlayerExampleVC.swift](https://github.com/Hideyuki-Machida/CameraCore/blob/master/Example/CameraCoreExample/CompositionAVPlayerExampleVC.swift)
-
-
-## ImageProcessing
-
-CompositionVideoAssetには、それぞれに PhotoShopの調整レイヤーのようなエフェクトレイヤー（RenderLayer）を加えることができます。
-
-### RenderLayer
-
-ビデオのフレーム毎に画像処理をしたい場合に用いるレイヤー
-
-Protocol: [RenderLayerProtocol.swift](https://github.com/Hideyuki-Machida/CameraCore/blob/master/CameraCore/ImageProcessing/RenderLayerProtocol.swift)
-
-Example: [RenderLayerExampleVC.swift](https://github.com/Hideyuki-Machida/CameraCore/blob/master/Example/CameraCoreExample/RenderLayerExampleVC.swift)
-
-
-## コンポジションしたビデオをエンコード & 保存
-### VideoEncoder
-
-Protocol: [VideoBitRateEncoder.swift](https://github.com/Hideyuki-Machida/CameraCore/blob/master/CameraCore/Encoder/VideoBitRateEncoder.swift)
-
-Example: [VideoBitRateEncoderExampleVC.swift](https://github.com/Hideyuki-Machida/CameraCore/blob/master/Example/CameraCoreExample/VideoBitRateEncoderExampleVC.swift)

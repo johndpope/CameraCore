@@ -12,7 +12,7 @@ public enum CodableURLType: Int {
     case userFile = 0
     case bundleFile = 1
     case other = 2
-    
+
     public func path(url: URL) -> String {
         switch self {
         case .userFile:
@@ -54,7 +54,7 @@ public struct CodableURL {
             return .userFile
         }
     }
-    
+
     public var url: URL
     public init(url: URL) {
         self.url = url

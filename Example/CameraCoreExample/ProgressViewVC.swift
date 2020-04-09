@@ -7,7 +7,13 @@
 //
 
 import UIKit
+import CameraCore
+import MetalCanvas
 
 class ProgressViewVC: UIViewController {
     @IBOutlet weak var progressLabel: UILabel!
+    
+    deinit {
+        MCDebug.deinitLog(self)
+    }
 }
